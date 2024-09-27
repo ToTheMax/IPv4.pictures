@@ -1,0 +1,85 @@
+<head>
+    <title>Hilbert IPv4 Address Space Visualization</title>
+
+    <script src='https://unpkg.com/ip.js'></script>
+
+    <script src='https://unpkg.com/hilbert-chart'></script>
+    <!--    <script src='../../dist/hilbert-chart.js'></script>-->
+
+    <style>
+        body {
+            margin: 0;
+            text-align: center;
+        }
+
+        #ipv4-chart {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='ipv4-chart'></div>
+    <script>
+        fetch('data/status.json')
+            .then(response => response.json())
+            .then(data => {
+                let blockData = data.map((d, i) => {
+                    return {
+                        start: d[0],
+                        length: d[1],
+                        name: d[2],
+                        color: {
+                            'allocated': 'purple',
+                            'assigned': 'lightgreen',
+                            'reserved': 'white',
+                            'available': 'red',
+                        }[d[2]] || 'black'
+                    };
+                });
+
+                // TODO library breaks on large lengths, slow patch:
+                // Preprocessing, if length is > 100.000, split it into different blocks
+                newBlockData = [];
+                blockData.forEach((d, i) => {
+                    if (d.length > 100000) {
+                        const numBlocks = Math.ceil(d.length / 100000);
+                        const blockLength = Math.ceil(d.length / numBlocks);
+                        for (let j = 0; j < numBlocks; j++) {
+                            newBlockData.push({
+                                start: d.start + j * blockLength,
+                                length: Math.min(blockLength, d.length - j * blockLength),
+                                name: d.name,
+                                color: d.color
+                            });
+                        }
+                    } else {
+                        newBlockData.push(d);
+                    }
+                });
+
+                const chart = HilbertChart({ useCanvas: true })
+                    .hilbertOrder(12)
+                    .data(newBlockData)
+                    .valFormatter(ipFormatter)
+                    .rangeLabel(d => d.name == 'reserved' ? "Reserved" : '')
+                    .rangeColor('color')
+                    .rangePadding(0.0)
+                    .showValTooltip(false)
+                    .rangeTooltipContent(d => `<b>${d.name.toUpperCase()}</b>: ${prefixFormatter(d)}`)
+                    //.onRangeClick(d => chart.focusOn(d.start, d.length, 3000))
+                    (document.getElementById('ipv4-chart'));
+
+                function ipFormatter(d) {
+                    return new Ip.Addr(d * 256).toString();
+                }
+
+                function prefixFormatter(d) {
+                    const ipRange = new Ip.Range(d.start * 256, d.start * 256 + d.length * 256 - 1),
+                        prefixes = ipRange.toPrefixes();
+
+                    return (prefixes.length === 1 ? prefixes[0] : ipRange).toString();
+                }
+            });
+    </script>
+</body>

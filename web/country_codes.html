@@ -1,0 +1,70 @@
+<head>
+    <title>Hilbert IPv4 Address Space Visualization</title>
+
+    <script src='https://unpkg.com/ip.js'></script>
+
+    <script src='https://unpkg.com/hilbert-chart'></script>
+    <!--    <script src='../../dist/hilbert-chart.js'></script>-->
+
+    <style>
+        body {
+            margin: 0;
+            text-align: center;
+        }
+
+        #ipv4-chart {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='ipv4-chart'></div>
+    <script>
+
+        var stringToColor = (string, saturation = 85, lightness = 55) => {
+            let hash = 0;
+            for (let i = 0; i < string.length; i++) {
+                hash = string.charCodeAt(i) + ((hash << 5) - hash);
+                hash = hash & hash;
+            }
+            return `hsl(${(hash % 360)}, ${saturation}%, ${lightness}%)`;
+        }
+
+        fetch('data/cc.json')
+            .then(response => response.json())
+            .then(data => {
+                let blockData = data.map((d, i) => {
+                    return {
+                        start: d[0],
+                        length: d[1],
+                        name: d[2],
+                        color: d[2] == 'ZZ' ? 'white' : stringToColor(d[2])
+                    };
+                });
+                const chart = HilbertChart({ useCanvas: true })
+                    .hilbertOrder(12)
+                    .data(blockData)
+                    .valFormatter(ipFormatter)
+                    .rangeLabel(d => d.name == 'ZZ' ? "Reserved" : '')
+                    .rangeColor('color')
+                    .rangePadding(0.0)
+                    .showValTooltip(false)
+                    .rangeTooltipContent(d => `<b>${d.name == 'ZZ' ? 'GLOBAL' : d.name.toUpperCase()}</b>: ${prefixFormatter(d)}`)
+                    .onRangeClick(d => chart.focusOn(d.start, d.length, 3000))
+                    (document.getElementById('ipv4-chart'));
+
+
+                function ipFormatter(d) {
+                    return new Ip.Addr(d * 256).toString();
+                }
+
+                function prefixFormatter(d) {
+                    const ipRange = new Ip.Range(d.start * 256, d.start * 256 + d.length * 256 - 1),
+                        prefixes = ipRange.toPrefixes();
+
+                    return (prefixes.length === 1 ? prefixes[0] : ipRange).toString();
+                }
+            });
+    </script>
+</body>
