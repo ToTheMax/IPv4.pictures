@@ -21,7 +21,7 @@
 <body>
     <div id='ipv4-chart'></div>
     <script>
-        fetch('data/status.json')
+        fetch('../data/status.json')
             .then(response => response.json())
             .then(data => {
                 let blockData = data.map((d, i) => {

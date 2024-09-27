@@ -32,7 +32,7 @@
         }
 
 
-        fetch('data/registry.json')
+        fetch('../data/registry.json')
             .then(response => response.json())
             .then(data => {
                 let blockData = data.map((d, i) => {
