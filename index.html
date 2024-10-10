@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPv4.pictures</title>
+    <title>Hilbert IPv4 Address Space Visualization</title>
     <style>
         body {
             display: flex;
@@ -19,38 +19,59 @@
 
         nav ul {
             display: flex;
+            flex-direction: column;
             list-style: none;
             padding: 0;
+            width: 100%;
+            max-width: 300px;
         }
 
         nav ul li {
-            margin: 0 10px;
+            margin: 10px 0;
             font-weight: bold;
         }
 
         nav ul li a {
-            display: inline-block;
+            display: block;
+            width: 100%;
             padding: 10px 20px;
             text-decoration: none;
             background-color: #007BFF;
             color: white;
             border-radius: 5px;
+            box-sizing: border-box;
         }
 
         nav ul li a:hover {
             background-color: #0056b3;
         }
+
+        @media (min-width: 768px) {
+            nav ul {
+                flex-direction: row;
+                max-width: none;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            nav ul li a {
+                display: inline-block;
+                width: auto;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to IPv4.pictures</h1>
-
+    <h1>IPv4.pictures</h1>
+    <p>Visualizations of the IPv4 address space by:</p>
     <nav>
         <ul>
-            <li><a href="registries.html">Registries</a></li>
-            <li><a href="country_codes.html">Country Codes</a></li>
-            <li><a href="statuses.html">Statuses</a></li>
+            <li><a href="registry.html">Registry</a></li>
+            <li><a href="country_code.html">Country Code</a></li>
+            <li><a href="status.html">Status</a></li>
         </ul>
     </nav>
 </body>
