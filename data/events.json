@@ -1,0 +1,444 @@
+{
+ "generated": "2026-09-30",
+ "events": [
+  {
+   "date": "1981-09-01",
+   "icon": "🔁",
+   "rfc": [
+    "RFC 1122"
+   ],
+   "blocks": [
+    {
+     "prefix": "127.0.0.0/8",
+     "start": 8323072,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Loopback",
+   "detail": "127.0.0.0/8 set aside by the IETF (RFC 1122)"
+  },
+  {
+   "date": "1981-09-01",
+   "icon": "📡",
+   "title": "Multicast (Class D)",
+   "detail": "224.0.0.0/4 set aside for multicast",
+   "rfc": [
+    "RFC 5771"
+   ],
+   "blocks": [
+    {
+     "prefix": "224.0.0.0/4",
+     "start": 14680064,
+     "len": 1048576
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "1981-09-01",
+   "icon": "📍",
+   "rfc": [
+    "RFC 791"
+   ],
+   "blocks": [
+    {
+     "prefix": "0.0.0.0/8",
+     "start": 0,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "This network",
+   "detail": "0.0.0.0/8 set aside by the IETF (RFC 791)"
+  },
+  {
+   "date": "1989-08-01",
+   "icon": "🚧",
+   "rfc": [
+    "RFC 1112"
+   ],
+   "blocks": [
+    {
+     "prefix": "240.0.0.0/4",
+     "start": 15728640,
+     "len": 1048576
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Class E (reserved for future use)",
+   "detail": "240.0.0.0/4 set aside by the IETF (RFC 1112)"
+  },
+  {
+   "date": "1993-05-01",
+   "icon": "🏛️",
+   "title": "First /8 listed for APNIC",
+   "detail": "202.0.0.0/8, the earliest-dated /8 IANA's table lists for APNIC",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "202.0.0.0/8",
+     "start": 13238272,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "1993-05-01",
+   "icon": "🏛️",
+   "title": "First /8 listed for ARIN",
+   "detail": "199.0.0.0/8, the earliest-dated /8 IANA's table lists for ARIN",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "199.0.0.0/8",
+     "start": 13041664,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "1993-05-01",
+   "icon": "🏛️",
+   "title": "First /8 listed for RIPE NCC",
+   "detail": "193.0.0.0/8, the earliest-dated /8 IANA's table lists for RIPE NCC",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "193.0.0.0/8",
+     "start": 12648448,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "1995-06-01",
+   "icon": "🏛️",
+   "title": "First /8 listed for LACNIC",
+   "detail": "189.0.0.0/8, the earliest-dated /8 IANA's table lists for LACNIC",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "189.0.0.0/8",
+     "start": 12386304,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "1996-01-01",
+   "icon": "🕳️",
+   "rfc": [
+    "RFC 7534"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.175.48.0/24",
+     "start": 12627760,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Direct Delegation AS112 Service",
+   "detail": "192.175.48.0/24 set aside by the IETF (RFC 7534)"
+  },
+  {
+   "date": "1996-02-01",
+   "icon": "🏠",
+   "rfc": [
+    "RFC 1918"
+   ],
+   "blocks": [
+    {
+     "prefix": "10.0.0.0/8",
+     "start": 655360,
+     "len": 65536
+    },
+    {
+     "prefix": "172.16.0.0/12",
+     "start": 11276288,
+     "len": 4096
+    },
+    {
+     "prefix": "192.168.0.0/16",
+     "start": 12625920,
+     "len": 256
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Private-Use",
+   "detail": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 set aside by the IETF (RFC 1918)"
+  },
+  {
+   "date": "1999-03-01",
+   "icon": "⏱️",
+   "rfc": [
+    "RFC 2544"
+   ],
+   "blocks": [
+    {
+     "prefix": "198.18.0.0/15",
+     "start": 12980736,
+     "len": 512
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Benchmarking",
+   "detail": "198.18.0.0/15 set aside by the IETF (RFC 2544)"
+  },
+  {
+   "date": "2001-06-01",
+   "icon": "🌉",
+   "rfc": [
+    "RFC 7526"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.88.99.0/24",
+     "start": 12605539,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "6to4 Relay Anycast",
+   "detail": "192.88.99.0/24 set aside by the IETF (RFC 7526)"
+  },
+  {
+   "date": "2005-04-01",
+   "icon": "🏛️",
+   "title": "First /8 listed for AFRINIC",
+   "detail": "41.0.0.0/8, the earliest-dated /8 IANA's table lists for AFRINIC",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "41.0.0.0/8",
+     "start": 2686976,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "2005-05-01",
+   "icon": "🔗",
+   "rfc": [
+    "RFC 3927"
+   ],
+   "blocks": [
+    {
+     "prefix": "169.254.0.0/16",
+     "start": 11140608,
+     "len": 256
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Link Local",
+   "detail": "169.254.0.0/16 set aside by the IETF (RFC 3927)"
+  },
+  {
+   "date": "2008-02-01",
+   "icon": "♻️",
+   "title": "14/8 recovered by IANA",
+   "detail": "This was reserved for Public Data Networks [RFC 1356]. See Public Data Network Numbers. It was recovered in February 2008 and was subsequently allocated to APNIC in April 2010.",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "14.0.0.0/8",
+     "start": 917504,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "2010-01-01",
+   "icon": "📄",
+   "rfc": [
+    "RFC 5737"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.0.2.0/24",
+     "start": 12582914,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Documentation (TEST-NET-1)",
+   "detail": "192.0.2.0/24 set aside by the IETF (RFC 5737)"
+  },
+  {
+   "date": "2010-01-01",
+   "icon": "📄",
+   "rfc": [
+    "RFC 5737"
+   ],
+   "blocks": [
+    {
+     "prefix": "198.51.100.0/24",
+     "start": 12989284,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Documentation (TEST-NET-2)",
+   "detail": "198.51.100.0/24 set aside by the IETF (RFC 5737)"
+  },
+  {
+   "date": "2010-01-01",
+   "icon": "📄",
+   "rfc": [
+    "RFC 5737"
+   ],
+   "blocks": [
+    {
+     "prefix": "203.0.113.0/24",
+     "start": 13303921,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Documentation (TEST-NET-3)",
+   "detail": "203.0.113.0/24 set aside by the IETF (RFC 5737)"
+  },
+  {
+   "date": "2010-01-01",
+   "icon": "🧪",
+   "rfc": [
+    "RFC 6890"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.0.0.0/24",
+     "start": 12582912,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "IETF Protocol Assignments",
+   "detail": "192.0.0.0/24 set aside by the IETF (RFC 6890)"
+  },
+  {
+   "date": "2010-04-01",
+   "icon": "➡️",
+   "title": "14/8 allocated to APNIC",
+   "detail": "This was reserved for Public Data Networks [RFC 1356]. See Public Data Network Numbers. It was recovered in February 2008 and was subsequently allocated to APNIC in April 2010.",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "14.0.0.0/8",
+     "start": 917504,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "2011-02-01",
+   "icon": "🏁",
+   "title": "IANA hands out its last /8s",
+   "detail": "IANA's free pool is exhausted: 102/8 to AFRINIC, 103/8 to APNIC, 104/8 to ARIN, 179/8 to LACNIC, 185/8 to RIPE NCC",
+   "rfc": [],
+   "blocks": [
+    {
+     "prefix": "102.0.0.0/8",
+     "start": 6684672,
+     "len": 65536
+    },
+    {
+     "prefix": "103.0.0.0/8",
+     "start": 6750208,
+     "len": 65536
+    },
+    {
+     "prefix": "104.0.0.0/8",
+     "start": 6815744,
+     "len": 65536
+    },
+    {
+     "prefix": "179.0.0.0/8",
+     "start": 11730944,
+     "len": 65536
+    },
+    {
+     "prefix": "185.0.0.0/8",
+     "start": 12124160,
+     "len": 65536
+    }
+   ],
+   "source": "https://www.iana.org/assignments/ipv4-address-space"
+  },
+  {
+   "date": "2012-04-01",
+   "icon": "🔀",
+   "rfc": [
+    "RFC 6598"
+   ],
+   "blocks": [
+    {
+     "prefix": "100.64.0.0/10",
+     "start": 6569984,
+     "len": 16384
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "Shared Address Space",
+   "detail": "100.64.0.0/10 set aside by the IETF (RFC 6598)"
+  },
+  {
+   "date": "2014-12-01",
+   "icon": "📡",
+   "rfc": [
+    "RFC 7450"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.52.193.0/24",
+     "start": 12596417,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "AMT",
+   "detail": "192.52.193.0/24 set aside by the IETF (RFC 7450)"
+  },
+  {
+   "date": "2014-12-01",
+   "icon": "🕳️",
+   "rfc": [
+    "RFC 7535"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.31.196.0/24",
+     "start": 12591044,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "AS112-v4",
+   "detail": "192.31.196.0/24 set aside by the IETF (RFC 7535)"
+  },
+  {
+   "date": "2015-03-01",
+   "icon": "❌",
+   "rfc": [
+    "RFC 7526"
+   ],
+   "blocks": [
+    {
+     "prefix": "192.88.99.0/24",
+     "start": 12605539,
+     "len": 1
+    }
+   ],
+   "source": "https://www.iana.org/assignments/iana-ipv4-special-registry",
+   "title": "6to4 Relay Anycast retired",
+   "detail": "192.88.99.0/24 deprecated (RFC 7526)"
+  }
+ ]
+}
