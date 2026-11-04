@@ -141,6 +141,26 @@
 
         .row .name { flex: 1; }
         .row .val { color: var(--muted); font-variant-numeric: tabular-nums; }
+        .row .pct {
+            color: var(--muted);
+            opacity: .65;
+            font-variant-numeric: tabular-nums;
+            min-width: 3.4em;
+            text-align: right;
+        }
+
+        button.row.more {
+            width: 100%;
+            margin-top: 2px;
+            padding: 2px 0;
+            font: inherit;
+            text-align: left;
+            color: var(--muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        button.row.more:hover { color: var(--text); text-decoration: underline; }
 
         #hint {
             top: 16px;
@@ -526,6 +546,14 @@
             return `${addrs}`;
         };
 
+        // Share of the whole IPv4 space (N*N units, each unit a /24).
+        const fmtPct = n => {
+            const p = n / (N * N) * 100;
+            if (p >= 1) return `${p.toFixed(1)}%`;
+            if (p >= 0.01) return `${p.toFixed(2)}%`;
+            return p > 0 ? '<0.01%' : '0%';
+        };
+
         const regionNames = (() => {
             try { return new Intl.DisplayNames(['en'], { type: 'region' }); } catch { return null; }
         })();
@@ -880,6 +908,7 @@
         const target = { cx: N / 2, cy: N / 2, scale: 1 };
         let dpr = 1, vw = 1, vh = 1, fitScale = 1;
         let current = null, previous = null, mixT = 1, mixStart = 0;
+        let legendExpanded = false;
         let hover = null;
         let lastPointer = null;
         let timeIndex = null;       // snapshot index; null = latest
@@ -1054,7 +1083,7 @@
             const el = document.getElementById('legend');
             // Categories that don't exist in this snapshot (e.g. older status labels) are left out.
             const rows = ds.names.map((n, i) => ({ n, i, total: ds.totals[i] })).filter(r => r.total > 0);
-            const shown = ds.def.legendLimit ? rows.slice(0, ds.def.legendLimit) : rows;
+            const shown = (ds.def.legendLimit && !legendExpanded) ? rows.slice(0, ds.def.legendLimit) : rows;
             document.getElementById('note').textContent = ds.def.note || '';
             el.innerHTML = '';
             for (const r of shown) {
@@ -1062,7 +1091,8 @@
                 row.className = 'row';
                 const [cr, cg, cb] = ds.rgb[r.i];
                 row.innerHTML = `<span class="sw" style="background:rgb(${cr | 0},${cg | 0},${cb | 0})"></span>`
-                    + `<span class="name"></span><span class="val">${fmtCount(r.total)}</span>`;
+                    + `<span class="name"></span><span class="val">${fmtCount(r.total)}</span>`
+                    + `<span class="pct">${fmtPct(r.total)}</span>`;
                 row.querySelector('.name').textContent = ds.def.label(r.n);
                 el.appendChild(row);
             }
@@ -1071,15 +1101,22 @@
                 const row = document.createElement('div');
                 row.className = 'row';
                 row.innerHTML = `<span class="sw" style="background:var(--bg);box-shadow:inset 0 0 0 1px var(--border)"></span>`
-                    + `<span class="name">No data</span><span class="val">${fmtCount(ds.totals[EMPTY])}</span>`;
+                    + `<span class="name">No data</span><span class="val">${fmtCount(ds.totals[EMPTY])}</span>`
+                    + `<span class="pct">${fmtPct(ds.totals[EMPTY])}</span>`;
                 el.appendChild(row);
             }
             if (shown.length < rows.length) {
-                const more = document.createElement('div');
-                more.className = 'row';
-                more.style.color = 'var(--muted)';
-                more.textContent = `+ ${rows.length - shown.length} more — hover the map`;
+                const more = document.createElement('button');
+                more.className = 'row more';
+                more.textContent = `+ ${rows.length - shown.length} more — show all`;
+                more.addEventListener('click', () => { legendExpanded = true; renderLegend(ds); });
                 el.appendChild(more);
+            } else if (legendExpanded && ds.def.legendLimit && rows.length > ds.def.legendLimit) {
+                const less = document.createElement('button');
+                less.className = 'row more';
+                less.textContent = 'Show less';
+                less.addEventListener('click', () => { legendExpanded = false; renderLegend(ds); });
+                el.appendChild(less);
             }
         }
 
@@ -1262,7 +1299,7 @@
             const summary = document.createElement('div');
             summary.className = 'muted';
             summary.textContent = total
-                ? `${fmtCount(total)} addresses changed in ${changes.length.toLocaleString()} range${changes.length === 1 ? '' : 's'}.`
+                ? `${fmtCount(total)} addresses (${fmtPct(total)}) changed in ${changes.length.toLocaleString()} range${changes.length === 1 ? '' : 's'}.`
                 : 'No changes.';
             body.appendChild(summary);
 
@@ -1286,6 +1323,7 @@
                 row.className = 'row';
                 row.append(transition(ds, key >> 8, key & 255));
                 row.appendChild(Object.assign(document.createElement('span'), { className: 'val', textContent: fmtCount(n) }));
+                row.appendChild(Object.assign(document.createElement('span'), { className: 'pct', textContent: fmtPct(n) }));
                 body.appendChild(row);
             }
             if (pairs.length > 6) {
@@ -1302,9 +1340,10 @@
                 top.className = 'ip';
                 top.textContent = rangeLabel(start, len);
                 const size = Object.assign(document.createElement('span'), { className: 'val', textContent: fmtCount(len) });
+                const pct = Object.assign(document.createElement('span'), { className: 'pct', textContent: fmtPct(len) });
                 const line = document.createElement('span');
                 line.className = 'row';
-                line.append(top, size);
+                line.append(top, size, pct);
                 item.append(line, transition(ds, from, to));
                 item.addEventListener('mouseenter', () => setHover({ ds, snap: ds.snap, start, len, id: to }));
                 item.addEventListener('mouseleave', () => setHover(null));
@@ -1591,6 +1630,7 @@
                 if (current) { previous = current; mixStart = performance.now(); }
                 current = ds;
                 hover = null;
+                legendExpanded = false;
                 buildTimeline(ds);
             }
             // legend updates in syncSnapshots once this snapshot is baked
